@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Awak 🤍</title>
+
+<style>
+body{
+    background:#0f172a;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    overflow:hidden;
+}
+
+h1{
+    margin-top:80px;
+}
+
+.love{
+    font-size:28px;
+    margin-top:20px;
+    animation:fade 2s infinite alternate;
+}
+
+button{
+    margin-top:40px;
+    padding:15px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d6d;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#ff1e4d;
+}
+
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10vh);}
+    100%{transform:translateY(110vh);}
+}
+
+@keyframes fade{
+    from{opacity:0.5;}
+    to{opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1>Untuk Awak 🤍</h1>
+
+<div class="love">
+<p>Saya sayang awak 🤍</p>
+<p>Saya sayang awak 🤍</p>
+<p>Saya sayang awak 🤍</p>
+<p>Saya sayang awak 🤍</p>
+<p>Saya sayang awak 🤍</p>
+</div>
+
+<button onclick="maaf()">Klik sini kalau awak masih marah 🥺</button>
+
+<script>
+function maaf(){
+alert("Maafkan saya ya. Saya betul-betul sayang awak 🤍");
+}
+
+function createHeart(){
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(10+Math.random()*30)+"px";
+heart.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
