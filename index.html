@@ -64,7 +64,7 @@ opacity:0.7;
 
 @keyframes fall{
 0%{ transform: translateY(0); } /* start dari top yg ditentukan di JS */
-100%{ transform: translateY(600vh); } /* jatuh sampai bawah */
+100%{ transform: translateY(250vh); } /* jatuh sampai bawah */
 }
 
 @keyframes fade{
@@ -141,7 +141,7 @@ function createHeart(){
 
     setTimeout(()=>{
         heart.remove();
-    }, duration*10000);
+    }, duration*1000);
 }
 
 // Hati jatuh setiap 150ms
