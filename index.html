@@ -2,99 +2,125 @@
 <html lang="ms">
 <head>
 <meta charset="UTF-8">
-<title>Untuk Aisyah comel 🤍</title>
+<title>Untuk Aisyah 🤍</title>
+
 <style>
 body{
-    background:#0f172a;
-    color:white;
-    font-family:Arial, sans-serif;
-    text-align:center;
-    overflow:hidden;
-    margin:0;
-    padding:0;
+margin:0;
+padding:0;
+overflow:hidden;
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
 }
+
 h1{
-    margin-top:80px;
-    font-size:36px;
+margin-top:80px;
+font-size:36px;
+position:relative;
+z-index:2;
 }
+
 .love{
-    font-size:28px;
-    margin-top:20px;
-    animation:fade 2s infinite alternate;
+font-size:26px;
+animation:fade 2s infinite alternate;
+position:relative;
+z-index:2;
 }
+
 button{
-    margin-top:40px;
-    padding:15px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:10px;
-    background:#ff4d6d;
-    color:white;
-    cursor:pointer;
+margin-top:30px;
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+position:relative;
+z-index:2;
 }
+
 button:hover{
-    background:#ff1e4d;
+background:#ff1e4d;
 }
+
 .heart{
-    position:absolute;
-    color:#ff4d6d;
-    animation:fall 5s linear infinite;
-    user-select:none;
-    pointer-events:none;
+position:absolute;
+color:#ff4d6d;
+animation:fall 5s linear infinite;
 }
+
 @keyframes fall{
-    0%{transform:translateY(-10vh);}
-    100%{transform:translateY(110vh);}
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
 }
+
 @keyframes fade{
-    from{opacity:0.5;}
-    to{opacity:1;}
+from{opacity:0.4;}
+to{opacity:1;}
+}
+
+#music{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:0;
+pointer-events:none;
 }
 </style>
+
 </head>
 <body>
 
-<h1>Untuk Aisyah Comel 🤍</h1>
+<h1>Untuk Aisyah 🤍</h1>
 
 <div class="love" id="loveText">
 <p>Saya sayang awak, Aisyah 🤍</p>
-<p>Saya sayang awak, Aisyah 🤍</p>
-<p>Saya sayang awak, Aisyah 🤍</p>
-<p>Saya sayang awak, Aisyah 🤍</p>
-<p>Saya sayang awak, Aisyah 🤍</p>
 </div>
 
-<button onclick="maaf()">Klik sini kalau awak masih marah 🥺</button>
+<button onclick="maaf()">Maafkan saya Aisyah 🥺</button>
 
-<audio id="music" autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+<!-- YouTube Autoplay Music -->
+<iframe id="music"
+src="https://www.youtube.com/embed/FvOpPeKSf_4?autoplay=1&loop=1&playlist=FvOpPeKSf_4&controls=0&showinfo=0&rel=0&modestbranding=1"
+frameborder="0"
+allow="autoplay">
+</iframe>
 
 <script>
+
 function maaf(){
-    alert("Maafkan saya ya, Aisyah. Saya betul-betul sayang awak 🤍");
+alert("Maafkan saya ya Aisyah. Saya betul-betul sayang awak 🤍");
 }
 
 function createHeart(){
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤";
-    heart.style.left=Math.random()*100+"vw";
-    heart.style.fontSize=(10+Math.random()*30)+"px";
-    heart.style.animationDuration=(3+Math.random()*5)+"s";
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(),8000);
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(10+Math.random()*30)+"px";
+heart.style.animationDuration=(3+Math.random()*5)+"s";
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
 }
+
 setInterval(createHeart,300);
 
-// Tambah banyak teks "Saya sayang awak, Aisyah 🤍"
 const loveDiv=document.getElementById("loveText");
-for(let i=0;i<50;i++){
-    const p=document.createElement("p");
-    p.textContent="Saya sayang awak, Aisyah 🤍";
-    loveDiv.appendChild(p);
+
+for(let i=0;i<80;i++){
+const p=document.createElement("p");
+p.textContent="Saya sayang awak, Aisyah 🤍";
+loveDiv.appendChild(p);
 }
+
 </script>
 
 </body>
