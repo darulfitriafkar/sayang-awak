@@ -13,20 +13,21 @@ font-family:Arial;
 background: linear-gradient(135deg,#ff758c,#ff7eb3); /* pink gradient */
 color:white;
 text-align:center;
+position:relative;
 }
 
 h1{
 margin-top:80px;
 font-size:36px;
 position:relative;
-z-index:2;
+z-index:2; /* teks atas hati */
 }
 
 .love{
 font-size:26px;
 animation:fade 2s infinite alternate;
 position:relative;
-z-index:2;
+z-index:2; /* teks atas hati */
 }
 
 button{
@@ -39,7 +40,7 @@ background:#ff4d6d;
 color:white;
 cursor:pointer;
 position:relative;
-z-index:2;
+z-index:2; /* button atas hati */
 }
 
 button:hover{
@@ -53,12 +54,12 @@ animation:fall linear infinite;
 font-size:20px;
 user-select:none;
 pointer-events:none;
-z-index:1;
+z-index:1; /* hati di belakang teks */
 }
 
 @keyframes fall{
 0%{
-  transform: translateY(-50px); /* start dari atas page */
+  transform: translateY(-50px); /* mula dari atas page */
 }
 100%{
   transform: translateY(110vh); /* jatuh sampai bawah */
@@ -101,31 +102,31 @@ function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤";
-    
-    // Hati muncul di random horizontal position
+
+    // Posisi horizontal random
     heart.style.left = Math.random()*100 + "vw";
-    
-    // Saiz random
+
+    // Saiz hati random
     heart.style.fontSize = (15 + Math.random()*25) + "px";
-    
-    // Durasi jatuh random supaya kelihatan natural
+
+    // Durasi jatuh random
     const duration = 3 + Math.random()*5;
     heart.style.animationDuration = duration + "s";
-    
+
     document.body.appendChild(heart);
-    
-    // Buang hati selepas animation selesai
+
+    // Remove hati selepas selesai jatuh
     setTimeout(()=>{
         heart.remove();
     }, duration*1000);
 }
 
-// Buat hati muncul setiap 200ms
-setInterval(createHeart, 200);
+// Hati muncul setiap 200ms
+setInterval(createHeart,200);
 
 // Tambah banyak teks "Saya sayang awak, Aisyah 🤍"
 const loveDiv = document.getElementById("loveText");
-for(let i=0; i<80; i++){
+for(let i=0;i<80;i++){
     const p = document.createElement("p");
     p.textContent = "Saya sayang awak, Aisyah 🤍";
     loveDiv.appendChild(p);
