@@ -10,7 +10,7 @@ margin:0;
 padding:0;
 overflow:hidden;
 font-family:Arial;
-background: linear-gradient(135deg,#ff758c,#ff7eb3); /* pink gradient */
+background: linear-gradient(135deg,#ff758c,#ff7eb3);
 color:white;
 text-align:center;
 position:relative;
@@ -21,14 +21,14 @@ h1{
 margin-top:80px;
 font-size:36px;
 position:relative;
-z-index:2; /* teks di atas hati */
+z-index:2; /* teks atas hati */
 }
 
 .love{
 font-size:26px;
 animation:fade 2s infinite alternate;
 position:relative;
-z-index:2; /* teks di atas hati */
+z-index:2;
 }
 
 button{
@@ -41,7 +41,7 @@ background:#ff4d6d;
 color:white;
 cursor:pointer;
 position:relative;
-z-index:2; /* button di atas hati */
+z-index:2;
 }
 
 button:hover{
@@ -54,16 +54,12 @@ color:#ff4d6d;
 animation:fall linear infinite;
 user-select:none;
 pointer-events:none;
-z-index:1; /* hati di belakang semua */
+z-index:1;
 }
 
 @keyframes fall{
-0%{
-  transform: translateY(-50px); /* mula dari atas */
-}
-100%{
-  transform: translateY(110vh); /* jatuh sampai bawah */
-}
+0%{ transform: translateY(0); } /* start dari top yg ditentukan di JS */
+100%{ transform: translateY(110vh); } /* jatuh sampai bawah */
 }
 
 @keyframes fade{
@@ -75,7 +71,7 @@ to{opacity:1;}
 </head>
 <body>
 
-<h1>Untuk Aisyah 🤍</h1>
+<h1 id="title">Untuk Aisyah 🤍</h1>
 
 <div class="love" id="loveText">
 <p>Saya sayang awak, Aisyah 🤍</p>
@@ -98,36 +94,39 @@ function playMusic(){
 document.getElementById("music").play();
 }
 
-// Fungsi untuk buat emoji jatuh
 function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML = "❤";
-    
-    // Posisi horizontal random dari tepi kiri hingga kanan
+
+    // Posisi horizontal random
     heart.style.left = Math.random()*100 + "vw";
-    
+
+    // Top mula dari bawah title
+    const title = document.getElementById("title");
+    const titleBottom = title.offsetTop + title.offsetHeight;
+    heart.style.top = titleBottom + "px";
+
     // Saiz emoji random
     heart.style.fontSize = (15 + Math.random()*25) + "px";
-    
-    // Durasi jatuh random supaya natural
-    const duration = 4 + Math.random()*4; // 4s hingga 8s
+
+    // Durasi jatuh random
+    const duration = 4 + Math.random()*4;
     heart.style.animationDuration = duration + "s";
-    
+
     document.body.appendChild(heart);
-    
-    // Remove hati selepas habis jatuh
+
     setTimeout(()=>{
         heart.remove();
     }, duration*1000);
 }
 
-// Hati jatuh setiap 150ms untuk penuhkan background
+// Hati jatuh setiap 150ms
 setInterval(createHeart, 150);
 
-// Tambah banyak teks "Saya sayang awak, Aisyah 🤍"
+// Tambah banyak teks
 const loveDiv = document.getElementById("loveText");
-for(let i=0; i<80; i++){
+for(let i=0;i<80;i++){
     const p = document.createElement("p");
     p.textContent = "Saya sayang awak, Aisyah 🤍";
     loveDiv.appendChild(p);
