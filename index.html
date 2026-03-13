@@ -21,8 +21,17 @@ h1{
 margin-top:80px;
 font-size:38px;
 position:relative;
-z-index:2; /* teks atas hati */
+z-index:2;
 text-shadow:0 0 10px rgba(255,255,255,0.6);
+}
+
+.nameGlow{
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px white; }
+to{ text-shadow:0 0 25px white,0 0 40px pink; }
 }
 
 .love{
@@ -52,6 +61,37 @@ transform:scale(1.1);
 background:#ff1e4d;
 }
 
+.musicBtn{
+position:fixed;
+top:20px;
+right:20px;
+padding:12px 20px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+z-index:5;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.musicBtn:hover{
+transform:scale(1.1);
+background:#ff1e4d;
+}
+
+.letter{
+max-width:650px;
+margin:40px auto;
+padding:30px;
+background:rgba(255,255,255,0.15);
+border-radius:20px;
+backdrop-filter:blur(10px);
+line-height:1.7;
+font-size:18px;
+}
+
 .heart{
 position:absolute;
 color:#ff4d6d;
@@ -63,8 +103,8 @@ opacity:0.7;
 }
 
 @keyframes fall{
-0%{ transform: translateY(0); } /* start dari top yg ditentukan di JS */
-100%{ transform: translateY(250vh); } /* jatuh sampai bawah */
+0%{ transform: translateY(0); }
+100%{ transform: translateY(250vh); }
 }
 
 @keyframes fade{
@@ -76,84 +116,91 @@ to{opacity:1;}
 </head>
 <body>
 
-<h1 id="title">Untuk Aisyah 🤍</h1>
+<h1 id="title">Untuk <span class="nameGlow">Aisyah</span> 🤍</h1>
 
 <div class="love" id="loveText">
 <p>Saya sayang awak, Aisyah 🤍</p>
 </div>
 
-<p>
+<p class="letter">
 Aisyah,<br><br>
-    
+
 Saya cuma nak awak tahu sesuatu dari hati saya yang paling jujur.
 Kadang-kadang saya mungkin tersalah cakap, tersalah buat, atau buat awak terasa. Tapi satu perkara yang tak pernah berubah ialah perasaan saya pada awak.<br><br>
 
 Saya sayang awak, Aisyah. 🤍<br><br>
 
 Awak sangat bermakna dalam hidup saya. Bila awak merajuk atau sedih, hati saya pun rasa tak tenang. Saya mungkin bukan lelaki yang sempurna, tapi saya betul-betul cuba jadi seseorang yang boleh buat awak rasa dihargai dan disayangi.
+
 Kalau saya ada buat salah, saya minta maaf dari hati saya. Saya tak pernah ada niat nak lukakan hati awak. Kadang manusia memang silap, tapi perasaan saya pada awak bukan sesuatu yang saya main-mainkan.
+
 Aisyah, terima kasih sebab hadir dalam hidup saya. Terima kasih sebab buat hari-hari saya rasa lebih bermakna.
+
 Saya harap awak boleh maafkan saya, dan saya harap kita boleh senyum dan ketawa sama-sama lagi seperti dulu.<br><br>
 
 Saya sayang awak, Aisyah. Selalu. 🤍
 </p>
 
-</div>
-
 <button onclick="maaf()">Maafkan saya Aisyah 🥺</button>
-<br>
-<button onclick="playMusic()">Play Music ❤️</button>
+
+<button class="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
 
 <audio id="music">
 <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
+
 function maaf(){
 alert("Maafkan saya ya Aisyah. Saya betul-betul sayang awak 🤍");
 }
 
-function playMusic(){
-document.getElementById("music").play();
+function toggleMusic(){
+const music=document.getElementById("music");
+const btn=document.querySelector(".musicBtn");
+
+if(music.paused){
+music.play();
+btn.innerHTML="⏸ Pause Music";
+}else{
+music.pause();
+btn.innerHTML="🎵 Play Music";
+}
 }
 
 function createHeart(){
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤";
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤";
 
-    // Posisi horizontal random
-    heart.style.left = Math.random()*100 + "vw";
+heart.style.left=Math.random()*100+"vw";
 
-    // Top mula dari bawah title
-    const title = document.getElementById("title");
-    const titleBottom = title.offsetTop + title.offsetHeight;
-    heart.style.top = titleBottom + "px";
+const title=document.getElementById("title");
+const titleBottom=title.offsetTop+title.offsetHeight;
+heart.style.top=titleBottom+"px";
 
-    // Saiz emoji random
-    heart.style.fontSize = (15 + Math.random()*25) + "px";
+heart.style.fontSize=(15+Math.random()*25)+"px";
 
-    // Durasi jatuh random
-    const duration = 10 + Math.random()*10;
-    heart.style.animationDuration = duration + "s";
+const duration=10+Math.random()*10;
+heart.style.animationDuration=duration+"s";
 
-    document.body.appendChild(heart);
+document.body.appendChild(heart);
 
-    setTimeout(()=>{
-        heart.remove();
-    }, duration*1000);
+setTimeout(()=>{
+heart.remove();
+},duration*1000);
 }
 
-// Hati jatuh setiap 150ms
-setInterval(createHeart, 300);
+setInterval(createHeart,300);
 
-// Tambah banyak teks
-const loveDiv = document.getElementById("loveText");
+const loveDiv=document.getElementById("loveText");
+
 for(let i=0;i<80;i++){
-    const p = document.createElement("p");
-    p.textContent = "Saya sayang awak, Aisyah 🤍";
-    loveDiv.appendChild(p);
+const p=document.createElement("p");
+p.textContent="Saya sayang awak, Aisyah 🤍";
+loveDiv.appendChild(p);
 }
+
 </script>
 
 </body>
